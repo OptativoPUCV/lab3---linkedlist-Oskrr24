@@ -105,9 +105,13 @@ void * popCurrent(List * list) {
 
   left->next = right;
   right->prev = left;
+
+  if(list->current == list->head) list->head = right;
+  if(list->current == list->tail) list->tail = left;
+  
   free(list->current);
   list->current = NULL;
-    return (void*) data;
+    return data;
 }
 
 void cleanList(List * list) {
